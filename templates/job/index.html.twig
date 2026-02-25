@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Tickets{% endblock %}
+
+{% block body %}
+   <div class="max-w-6xl mx-auto mt-10 px-4">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Liste des tickets</h1>
+            <p class="text-sm text-gray-500 underline decoration-indigo-200">Suivi de vos tâches</p>
+        </div>
+        <a href="{{ path('app_job_new') }}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all shadow-md">
+            <span class="mr-2">+</span> Nouveau ticket
+        </a>
+    </div>
+
+    <div class="flex gap-6 p-8">
+
+    {% for job in jobs %}
+
+
+    <a class="w-full max-w-md bg-white hover:bg-gray-50 rounded-xl shadow-md border border-gray-100 p-6" href="{{ path('app_job_edit', {'id': job.id}) }}">
+        <h3 class="text-sm font-bold text-gray-400 uppercase">{{ job.description }}</h3>
+        <p class="text-sm font-bold text-black-400 mt-2">{{ job.quantity }} demi-journées</p>
+        <p class="text-sm font-bold text-black-400 mt-2">{{ job.dailyRate }} €/jour</p>
+        <p class="text-sm font-black text-indigo-600 mt-2">Priorité: 
+        <span class="text-sm font-bold text-black-400 mt-2"> {{ job.getPriorityLabel() }}</span>
+        </p>
+        
+        <p class="text-sm font-black text-indigo-600 mt-2">Difficulté:
+        <span class="text-sm font-bold text-black-400 mt-2">{{ job.getDifficultyLabel() }}</span>
+        </p>
+        <p class="text-sm font-bold text-black-400 mt-2">Référence devis: {{ job.quote.id }}</p>
+    </a>
+
+    {% else %}
+        
+        <p>no records found</p>
+        
+    {% endfor %}
+        
+    </div>
+
+    </div>
+{% endblock %}

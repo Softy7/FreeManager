@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Client{% endblock %}
+
+{% block body %}
+
+
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('client/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Watch Tailwind",
+            "type": "shell",
+            "command": ".\\tailwind.exe -i .\\assets\\styles\\app.css -o .\\public\\build\\app.css --watch",
+            "group": "build",
+            "isBackground": true
+        }
+    ]
+}
+

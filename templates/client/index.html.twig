@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+
+    <div class="max-w-6xl mx-auto mt-10 px-4">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Liste des Clients</h1>
+            <p class="text-sm text-gray-500 underline decoration-indigo-200">Suivi de votre clientèle</p>
+        </div>
+        <a href="{{ path('app_client_new') }}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all shadow-md">
+            <span class="mr-2">+</span> Nouveau Client
+        </a>
+    </div>
+
+    <div class="max-w-6xl mx-auto mt-10 shadow-lg rounded-xl overflow-hidden border border-gray-200">
+    <table class="w-full text-left border-collapse bg-white">
+        <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-900">ID</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-900">Client</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-900">Entreprise</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-900">Email</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-900 text-right">TJM</th>
+                <th class="px-6 py-4 text-sm font-semibold text-center text-gray-900">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+            {% for client in clients %}
+                <tr class="hover:bg-indigo-50/50 transition-colors">
+                    <td class="px-6 py-4 text-sm text-gray-500 font-mono">#{{ client.id }}</td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ client.name }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-600 italic">{{ client.company }}</td>
+                    <td class="px-6 py-4 text-sm text-indigo-600 decoration-indigo-200 underline-offset-4 hover:underline">
+                        {{ client.email }}
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900 font-bold text-right">
+                        {{ client.tjmParDefaut }}€
+                    </td>
+                    <td class="px-6 py-4 text-sm text-center">
+                        <div class="flex justify-center gap-3">
+                            <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="text-gray-400 hover:text-amber-500 transition-colors" title="Éditer">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="px-6 py-10 text-center text-gray-400 italic bg-gray-50">
+                        Aucun client trouvé dans la base de données.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    </div>
+{% endblock %}

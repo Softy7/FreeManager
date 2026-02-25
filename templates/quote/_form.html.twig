@@ -1,0 +1,42 @@
+{# templates/quote/_form.html.twig #}
+
+{% set labels = {
+    'reference': 'Référence du devis',
+    'status': 'Statut actuel',
+    'total_ht': 'Montant Total HT (€)',
+    'client': 'Client concerné'
+} %}
+
+{{ form_start(form) }}
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 max-w-2xl mx-auto mt-10">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 italic">Informations du devis</h2>
+        
+        <div class="space-y-5">
+            {% for field in form %}
+                {% if field.vars.name != '_token' %}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">
+                            {{ labels[field.vars.name] ?? field.vars.name|capitalize }}
+                        </label>
+
+                        {{ form_widget(field, {
+                            'attr': {
+                                'class': 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white'
+                            }
+                        }) }}
+
+                        <div class="text-red-500 text-xs mt-1">
+                            {{ form_errors(field) }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="pt-4">
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-indigo-100 active:scale-95">
+                    🚀 Enregistrer le devis
+                </button>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

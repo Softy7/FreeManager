@@ -1,0 +1,48 @@
+{# templates/client/new.html.twig #}
+
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mt-10">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Informations du client</h1>
+
+    {# templates/client/_form.html.twig #}
+
+{% set labels = {
+    'name': 'Nom complet',
+    'company': 'Nom de l\'entreprise',
+    'email': 'Adresse e-mail professionnelle',
+    'tjm_par_defaut': 'Tarif Journalier Moyen (TJM)'
+} %}
+
+{{ form_start(form) }}
+    <div class="grid grid-cols-1 gap-5">
+        {% for field in form %}
+            {# On ignore le champ caché _token #}
+            {% if field.vars.name != '_token' %}
+                <div class="flex flex-col">
+                    
+                    {# 1. Le Label personnalisé via notre tableau #}
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        {{ labels[field.vars.name] ?? field.vars.name|capitalize }}
+                    </label>
+
+                    {# 2. Le Widget avec le style commun #}
+                    {{ form_widget(field, {
+                        'attr': {
+                            'class': 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none',
+                            'placeholder': labels[field.vars.name]
+                        }
+                    }) }}
+
+                    {# 3. Gestion des erreurs #}
+                    <div class="text-red-500 text-xs mt-1">
+                        {{ form_errors(field) }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <button class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-md">
+            {{ button_label|default('Enregistrer') }}
+        </button>
+    </div>
+{{ form_end(form) }}
+</div>

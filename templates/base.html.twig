@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <!--<link rel="stylesheet" href="{{ asset('build/app.css') }}">-->
+        <script src="https://cdn.tailwindcss.com"></script>        
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        
+        {% include 'dashboard/navbar.html.twig'%}
+        
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

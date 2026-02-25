@@ -1,0 +1,21 @@
+<nav class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center space-x-8">
+                <span class="text-xl font-bold text-indigo-600">🚀 FreeManager</span>
+                {% if app.user %}
+                <div class="hidden md:flex space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-indigo-600 px-3 py-2 font-medium">Dashboard</a>
+                    <a href="/client" class="text-gray-600 hover:text-indigo-600 px-3 py-2 font-medium">Clients</a>
+                    <a href="/quote" class="text-gray-600 hover:text-indigo-600 px-3 py-2 font-medium">Devis</a>
+                    <a href="/job" class="text-gray-600 hover:text-indigo-600 px-3 py-2 font-medium">Tickets</a>
+                </div>
+
+            </div>
+            <div class="flex items-center font-semibold text-green-600">
+                TJM : 300€
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
